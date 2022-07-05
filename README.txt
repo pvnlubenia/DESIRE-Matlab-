@@ -1,8 +1,8 @@
-================================================
+=========================================================
 
-  SPANTREE: SPANning TREEs of a directed graph
+  SPANTREE: directed SPANning TREEs of a directed graph
 
-================================================
+=========================================================
 
 Matlab was used to develop the classes and functions used here.
 
@@ -51,7 +51,7 @@ Notes
 
      2. The algorithm is based on [1].
 
-     3. The classes and functions are converted from Python to Matlab. The Python code can be found in https://github.com/ricelink/finding-all-Python code can be found in https://github.com/ricelink/finding-all-spanning-trees-in-directed-graph.
+     3. The classes and functions are converted from Python to Matlab. The Python code can be found in https://github.com/ricelink/finding-all-spanning-trees-in-directed-graph.
 
 
 
