@@ -22,7 +22,7 @@
 %    https://doi.org/10.1137/0207024                                          %
 %                                                                             %
 % Created: 22 June 2022                                                       %
-% Last Modified: 5 July 2022                                                  %
+% Last Modified: 6 July 2022                                                  %
 %                                                                             %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
@@ -43,7 +43,7 @@ function directed_span_tree(G, r)
     F = [ ];
 
     % Initialize count of spanning trees rooted at G.root_vertex
-    spanningTree = 0;
+    spanTreeCount = 0;
     
     % Print out digraph G
     fprintf('\n  GIVEN \n\n');
@@ -58,7 +58,7 @@ function directed_span_tree(G, r)
     end
     
     % Generate spanning trees
-    grow(G.V, G, T, L, F, spanningTree);
+    grow(G.V, G, T, L, F, spanTreeCount);
 
 end
 
@@ -90,9 +90,9 @@ end
 %         - T: subtree for spanning tree generation                                                               %
 %         - L: latest spanning tree found                                                                         %
 %         - F: list of all edges directed from vertices in T to vertices not in T                                 %
-%         - spanningTree: number of spanning trees                                                                %
+%         - spanTreeCount: number of spanning trees                                                                %
 %    - Outputs                                                                                                    %
-%         - spanningTree: count of spanning trees rooted at G.root_vertex                                         %
+%         - spanTreeCount: count of spanning trees rooted at G.root_vertex                                         %
 %         - Automatically shows the reactions of each spanning tree                                               %
 %    - Used in                                                                                                    %
 %         - directed_span_tree                                                                                    %
@@ -103,7 +103,7 @@ end
 %                                                                                                                 %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
  
-function spanningTree = grow(V, G, T, L, F, spanningTree)
+function spanTreeCount = grow(V, G, T, L, F, spanTreeCount)
 
     %
     % Step 1: Make sure the root vertex of the subgraphs are the same as that of the main graph
@@ -129,12 +129,12 @@ function spanningTree = grow(V, G, T, L, F, spanningTree)
         L.vertex = T.vertex;
 
         % Add 1 to the count of spanning trees
-        spanningTree = spanningTree + 1;
-    
+        spanTreeCount = spanTreeCount + 1;
+
         % Print the spanning tree L
-        fprintf(['\n  SPANNING TREE ', num2str(spanningTree), ' (Root: Vertex ', num2str(L.root_vertex), ') \n\n']);
+        fprintf(['\n  SPANNING TREE ', num2str(spanTreeCount), ' (Root: Vertex ', num2str(L.root_vertex), ') \n\n']);
         L.displayGraph();
-    
+        
         % Visit all the vertices of L
         L.depthFirstSearch(L.root_vertex);
     else
@@ -277,7 +277,7 @@ function spanningTree = grow(V, G, T, L, F, spanningTree)
     % Step 8: Recurse
     %
 
-            spanningTree = grow(V, G, T, L, F, spanningTree);
+            spanTreeCount = grow(V, G, T, L, F, spanTreeCount);
 
 
 

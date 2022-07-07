@@ -25,14 +25,14 @@ directed_span_tree uses the following classes and function:     1. graph_ (cla
                 g. displayGraph: To display the edges of the graph
                 h. plotGraph: To plot the graph
 
-     2. grow (function)           - OUTPUT: Returns the spanning trees away from the root vertex. The output variable 'spanningTree' allows the user to view the count of spanning trees rooted at G.root_vertex
+     2. grow (function)           - OUTPUT: Returns the spanning trees away from the root vertex. The output variable 'spanTreeCount' allows the user to view the count of spanning trees rooted at G.root_vertex
            - INPUTS
                 - V: number of vertices in the graph
                 - G: given digraph
                 - T: subtree for spanning tree generation
                 - L: latest spanning tree found
                 - F: list of all edges directed from vertices in T to vertices not in T
-                - spanningTree: number of spanning trees
+                - spanTreeCount: number of spanning trees
      3. edge (class; used in graph_ and grow)           - OUTPUT: Returns a directed edge with indicated starting and ending vertex numbers. It adds a directed edge from 'from_node' to 'to_node' to a directed graph created using the class graph_.
            - INPUTS
                 - from_node: starting vertex number (natural number)
@@ -49,7 +49,7 @@ Notes
 
      1. Make sure all 4 classes/function are in the same folder/path being used as the current working directory.
 
-     2. The algorithm is based on [1].
+     2. The algorithm is based on [2].
 
      3. The classes and functions are converted from Python to Matlab. The Python code can be found in https://github.com/ricelink/finding-all-spanning-trees-in-directed-graph.
 
@@ -61,11 +61,11 @@ Examples
 
 3 examples are included in this folder:
 
-   - Example 1: A graph with 4 spanning trees rooted at vertex 1 [1]
+   - Example 1: A graph with 4 spanning trees rooted at vertex 1 [2]
 
-   - Example 2: Generalized chemical reaction network of the Histidine Kinase Model [2]
+   - Example 2: 7-state model of conformational changes that a ribosome can undergo during the elongation stage of translation [1]
 
-   - Example 3: Subnetwork 1 of the insulin metabolic signaling network [3]
+   - Example 3: A graph that has no spanning tree [3]
 
 
 
@@ -76,7 +76,7 @@ Contact Information
 For questions, comments, and suggestions, feel free to contact me at pvnlubenia@yahoo.co.uk.
 
 
-- Patrick Lubenia (4 July 2022)
+- Patrick Lubenia (7 July 2022)
 
 
 
@@ -84,8 +84,8 @@ For questions, comments, and suggestions, feel free to contact me at pvnlubenia@
 References
 ==========
 
-   [1] Gabow H and Meyers E (1978) Finding all spanning trees of directed and undirected graphs. SIAM J Comput 7(3):280-287. https://doi.org/10.1137/0207024
+   [1] Dutta A, Schutz G, Chowdhury D (2020) Stochastic thermodynamics and modes of operation of ribosome: A network theoretic perspective. Phys Rev E 101(3):1-28. https://doi.org/10.1103/PhysRevE.101.032402
 
-   [2] Johnston M and Burton E (2019) Computing weakly reversible deficiency zero network translations using elementary flux modes. Bull Math Biol 81:1613-1644. https://doi.org/10.1007/s11538-019-00579-z
+   [2] Gabow H and Meyers E (1978) Finding all spanning trees of directed and undirected graphs. SIAM J Comput 7(3):280-287. https://doi.org/10.1137/0207024
 
-   [3] Lubenia P, Mendoza E, Lao A (2022) ﻿Reaction network analysis of metabolic insulin signaling (submitted) https://doi.org/10.48550/arXiv.2204.04614
+   [3] Liu B, Lu W, Chen T (2015) Consensus in continuous-time multiagent systems under discontinuous nonlinear protocols. IEEE Trans Neural Netw Learn Syst 26(2):290-301. https://doi.org/10.1109/TNNLS.2014.2314699
