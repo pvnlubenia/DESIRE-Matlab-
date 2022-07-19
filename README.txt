@@ -12,7 +12,7 @@ Matlab was used to develop the classes and functions used here.
 Functions and Classes
 =====================The function directedSpanTreeAway and directedSpanTreeTowards return the reactions of the given directed graph and the reactions of the directed spanning trees rooted at the indicated vertex, away from and towards the root, respectively. If there are no directed spanning trees from the indicated root vertex, only the given digraph will be shown. There is no output variable. The functions automatically generate the spanning trees, if they exist.
 
-directed_span_tree uses the following classes and function:     1. graph_ (class)
+directedSpanTreeAway and directedSpanTreeTowards use the following classes and function:     1. graph_ (class)
            - OUTPUT: Returns a digraph with 'V' vertices and corresponding default properties. The edges of the digraph are equally weighted.
            - INPUT: V: number of vertices in the digraph
            - This class has 8 functions inside it:
