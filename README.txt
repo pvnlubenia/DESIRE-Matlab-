@@ -1,8 +1,8 @@
-=========================================================
+===================================
 
-  SPANTREE: directed SPANning TREEs of a directed graph
+  DESIRE: DirectEd SpannIng tREes
 
-=========================================================
+===================================
 
 Matlab was used to develop the classes and functions used here.
 
@@ -10,7 +10,7 @@ Matlab was used to develop the classes and functions used here.
 
 =====================
 Functions and Classes
-=====================The function directed_span_tree returns the reactions of the given directed graph and the reactions of the directed spanning trees rooted at the indicated vertex. If there are no directed spanning trees from the indicated root vertex, only the given digraph will be shown. There is no output variable. The function automatically generates the spanning tree.
+=====================The function directedSpanTreeAway and directedSpanTreeTowards return the reactions of the given directed graph and the reactions of the directed spanning trees rooted at the indicated vertex, away from and towards the root, respectively. If there are no directed spanning trees from the indicated root vertex, only the given digraph will be shown. There is no output variable. The functions automatically generate the spanning trees, if they exist.
 
 directed_span_tree uses the following classes and function:     1. graph_ (class)
            - OUTPUT: Returns a digraph with 'V' vertices and corresponding default properties. The edges of the digraph are equally weighted.
@@ -47,11 +47,13 @@ directed_span_tree uses the following classes and function:     1. graph_ (cla
 Notes
 =====
 
-     1. Make sure all 4 classes/function are in the same folder/path being used as the current working directory.
+   1. directedSpanTreeTowards uses the same algorithm for directedSpanTreeAway but the edges of the given graph are reversed first, then edges of the spanning tree generated away from a root are reversed again.
 
-     2. The algorithm is based on [2].
+   2. Make sure all 4 classes/function are in the same folder/path being used as the current working directory.
 
-     3. The classes and functions are converted from Python to Matlab. The Python code can be found in https://github.com/ricelink/finding-all-spanning-trees-in-directed-graph.
+   3. The algorithm is based on [2].
+
+   4. The classes and functions are converted from Python to Matlab. The Python code can be found in https://github.com/ricelink/finding-all-spanning-trees-in-directed-graph.
 
 
 
@@ -59,13 +61,13 @@ Notes
 Examples
 ========
 
-3 examples are included in this folder:
+5 examples are included in this folder (the first 3 use directedSpanTreeAway while the last 2 use directedSpanTreeTowards):
 
    - Example 1: A graph with 4 spanning trees rooted at vertex 1 [2]
 
-   - Example 2: 7-state model of conformational changes that a ribosome can undergo during the elongation stage of translation [1]
+   - Example 2 and 4: 7-state model of conformational changes that a ribosome can undergo during the elongation stage of translation [1]
 
-   - Example 3: A graph that has no spanning tree [3]
+   - Example 3 and 5: A graph that has no spanning tree [3]
 
 
 
@@ -76,7 +78,7 @@ Contact Information
 For questions, comments, and suggestions, feel free to contact me at pvnlubenia@yahoo.co.uk.
 
 
-- Patrick Lubenia (7 July 2022)
+- Patrick Lubenia (19 July 2022)
 
 
 
