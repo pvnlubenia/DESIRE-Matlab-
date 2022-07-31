@@ -7,8 +7,9 @@
 %    reactions of the directed spanning trees rooted at the indicated       %
 %    vertex. The spanning trees are towards the root. If there are no       %
 %    directed spanning trees towards the indicated root vertex, only the    %
-%    given digraph will be shown. Furthermore, there is no output variable. %
-%    The function automatically generates the spanning tree.                %
+%    given digraph will be shown. The output variables 'spanTree' allows    %
+%    the user to view the list of edges of the directed spanning tree       %
+%    towards the root vertex.                                               %
 %                                                                           %
 % INPUTS:                                                                   %
 %    - G: directed graph (generated using the class graph_.m) with          %
@@ -22,17 +23,17 @@
 %    spanning tree generated away from a root are reversed again.           %
 %                                                                           %
 % Reference: Gabow H and Meyers E (1978) Finding all spanning trees of      %
-%    and undirected graphs. SIAM J Comput 7(3):280-287.                     %
+%    directed and undirected graphs. SIAM J Comput 7(3):280-287.            %
 %    https://doi.org/10.1137/0207024                                        %
 %                                                                           %
 % Created: 22 June 2022                                                     %
-% Last Modified: 19 July 2022                                               %
+% Last Modified: 31 July 2022                                               %
 %                                                                           %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
 
 
-function directedSpanTreeTowards(G, r)
+function spanTree = directedSpanTreeTowards(G, r)
 
     % Print out digraph G
     fprintf('\n  GIVEN \n\n');
@@ -65,6 +66,9 @@ function directedSpanTreeTowards(G, r)
 
     % Initialize count of spanning trees rooted at G.root_vertex
     spanTreeCount = 0;
+
+    % Initialize list of spanning trees found
+    spanTree = { };
     
     % Initialize F to contain all edges from the root vertex
     % Go through each vertex to which the root vertex is connected to
@@ -75,7 +79,7 @@ function directedSpanTreeTowards(G, r)
     end
     
     % Generate spanning trees
-    grow(G.V, G, T, L, F, spanTreeCount);
+    spanTree = grow(G.V, G, T, L, F, spanTreeCount, spanTree);
 
 end
 
@@ -96,31 +100,36 @@ end
 % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-%                                                                                                                 %
-% Function: grow                                                                                                  %
-%                                                                                                                 %
-%    - Purpose: To generate the spanning trees away from the root vertex                                          %
-%    - Inputs                                                                                                     %
-%         - V: number of vertices in the graph                                                                    %
-%         - G: given digraph                                                                                      %
-%         - T: subtree for spanning tree generation                                                               %
-%         - L: latest spanning tree found                                                                         %
-%         - F: list of all edges directed from vertices in T to vertices not in T                                 %
-%         - spanTreeCount: number of spanning trees                                                               %
-%    - Outputs                                                                                                    %
-%         - spanTreeCount: count of spanning trees rooted at G.root_vertex                                        %
-%         - Automatically shows the reactions of each spanning tree                                               %
-%    - Used in                                                                                                    %
-%         - directedSpanTreeAway                                                                                  %
-%    - Notes                                                                                                      %
-%         - The function uses the class edge.m                                                                    %
-%         - This function was converted from Python to Matlab                                                     %
-%         - Python code can be found in https://github.com/ricelink/finding-all-spanning-trees-in-directed-graph  %
-%                                                                                                                 %
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%                                                                           %
+% Function: grow                                                            %
+%                                                                           %
+%    - Purpose: To generate the spanning trees toward the root vertex       %
+%    - Inputs                                                               %
+%         - V: number of vertices in the graph                              %
+%         - G: given digraph                                                %
+%         - T: subtree for spanning tree generation                         %
+%         - L: latest spanning tree found                                   %
+%         - F: list of all edges directed from vertices in T to vertices    %
+%              not in T                                                     %
+%         - spanTreeCount: number of spanning trees                         %
+%         - spanTree: list of edges of the directed spanning tree towards   %
+%              the root vertex                                              %
+%    - Outputs                                                              %
+%         - spanTree: list of edges of the directed spanning tree towards   %
+%              the root vertex                                              %
+%         - spanTreeCount: count of spanning trees rooted at G.root_vertex  %
+%    - Used in                                                              %
+%         - directedSpanTreeTowards                                         %
+%    - Notes                                                                %
+%         - The function uses the class edge.m                              %
+%         - This function was converted from Python to Matlab               %
+%         - Python code can be found in https://github.com/ricelink/finding %
+%              -all-spanning-trees-in-directed-graph                        %
+%                                                                           %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
  
-function spanTreeCount = grow(V, G, T, L, F, spanTreeCount)
+function [spanTree, spanTreeCount] = grow(V, G, T, L, F, spanTreeCount, spanTree)
 
     %
     % Step 1: Make sure the root vertex of the subgraphs are the same as that of the main graph
@@ -160,6 +169,24 @@ function spanTreeCount = grow(V, G, T, L, F, spanTreeCount)
 
         % Add 1 to the count of spanning trees
         spanTreeCount = spanTreeCount + 1;
+
+        % Initialize vertex of spanning tree reactions
+        spanTreeReaction = zeros(2, length(cell2mat(L.edge)));
+        
+        % Get the edges from the spanning tree
+        i = 1;
+        for j = 1:L.V
+            if ~isempty(L.edge{j})
+                for k = 1:length(L.edge{j})
+                    spanTreeReaction(1, i) = j;
+                    spanTreeReaction(2, i) = L.edge{j}(k);
+                    i = i + 1;
+                end
+            end
+        end
+        
+        % Add the spanning tree to the list
+        spanTree{spanTreeCount} = spanTreeReaction;
 
         % Print the spanning tree L
         fprintf(['\n  SPANNING TREE ', num2str(spanTreeCount), ' (Root: Vertex ', num2str(L.root_vertex), ') \n\n']);
@@ -307,7 +334,7 @@ function spanTreeCount = grow(V, G, T, L, F, spanTreeCount)
     % Step 8: Recurse
     %
 
-            spanTreeCount = grow(V, G, T, L, F, spanTreeCount);
+            [spanTree, spanTreeCount] = grow(V, G, T, L, F, spanTreeCount, spanTree);
 
 
 

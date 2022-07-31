@@ -10,7 +10,7 @@ Matlab was used to develop the classes and functions used here.
 
 =====================
 Functions and Classes
-=====================The function directedSpanTreeAway and directedSpanTreeTowards return the reactions of the given directed graph and the reactions of the directed spanning trees rooted at the indicated vertex, away from and towards the root, respectively. If there are no directed spanning trees from the indicated root vertex, only the given digraph will be shown. There is no output variable. The functions automatically generate the spanning trees, if they exist.
+=====================The function directedSpanTreeAway and directedSpanTreeTowards return the reactions of the given directed graph and the reactions of the directed spanning trees rooted at the indicated vertex, away from and towards the root, respectively. If there are no directed spanning trees from the indicated root vertex, only the given digraph will be shown. 
 
 directedSpanTreeAway and directedSpanTreeTowards use the following classes and function:     1. graph_ (class)
            - OUTPUT: Returns a digraph with 'V' vertices and corresponding default properties. The edges of the digraph are equally weighted.
@@ -25,7 +25,7 @@ directedSpanTreeAway and directedSpanTreeTowards use the following classes and f
                 g. displayGraph: To display the edges of the graph
                 h. plotGraph: To plot the graph
 
-     2. grow (function)           - OUTPUT: Returns the spanning trees away from the root vertex. The output variable 'spanTreeCount' allows the user to view the count of spanning trees rooted at G.root_vertex
+     2. grow (function)           - OUTPUT: Returns the spanning trees away from the root vertex. The output variables 'spanTree' and 'spanTreeCount' allow the user to view the list of edges of the directed spanning tree towards the root vertex and the count of spanning trees rooted at G.root_vertex.
            - INPUTS
                 - V: number of vertices in the graph
                 - G: given digraph
@@ -33,6 +33,7 @@ directedSpanTreeAway and directedSpanTreeTowards use the following classes and f
                 - L: latest spanning tree found
                 - F: list of all edges directed from vertices in T to vertices not in T
                 - spanTreeCount: number of spanning trees
+                - spanTree: list of edges of the directed spanning tree towards the root vertex
      3. edge (class; used in graph_ and grow)           - OUTPUT: Returns a directed edge with indicated starting and ending vertex numbers. It adds a directed edge from 'from_node' to 'to_node' to a directed graph created using the class graph_.
            - INPUTS
                 - from_node: starting vertex number (natural number)
@@ -78,7 +79,7 @@ Contact Information
 For questions, comments, and suggestions, feel free to contact me at pvnlubenia@yahoo.co.uk.
 
 
-- Patrick Lubenia (19 July 2022)
+- Patrick Lubenia (31 July 2022)
 
 
 
