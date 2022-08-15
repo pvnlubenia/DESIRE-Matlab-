@@ -27,7 +27,7 @@
 %    https://doi.org/10.1137/0207024                                        %
 %                                                                           %
 % Created: 22 June 2022                                                     %
-% Last Modified: 31 July 2022                                               %
+% Last Modified: 15 August 2022                                             %
 %                                                                           %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
@@ -191,6 +191,19 @@ function [spanTree, spanTreeCount] = grow(V, G, T, L, F, spanTreeCount, spanTree
         % Print the spanning tree L
         fprintf(['\n  SPANNING TREE ', num2str(spanTreeCount), ' (Root: Vertex ', num2str(L.root_vertex), ') \n\n']);
         L.displayGraph();
+
+        % Initialize the reversed reverse_edge_back
+        reverse_edge_back_again = cell(1, V);
+        
+        % Reverse back the edges
+        for i = 1:V
+            for j = 1:length(L.edge{i})
+                reverse_edge_back_again{L.edge{i}(j)}(end+1) = i;
+            end
+        end
+        
+        % Replace the edges of L
+        L.edge = reverse_edge_back_again;
         
         % Visit all the vertices of L
         L.depthFirstSearch(L.root_vertex);

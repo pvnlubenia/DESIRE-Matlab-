@@ -30,7 +30,7 @@
 
 
 function spanTree = directedSpanTreeAway(G, r)
-
+    G
     % Root vertex where the spanning trees will come from
     G.root_vertex = r;
 
